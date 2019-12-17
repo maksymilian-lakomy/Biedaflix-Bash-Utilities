@@ -63,7 +63,7 @@ crop=$(detect_crop $filePath $durationCenter)
 finalPath="./s$season/e$episode"
 mkdir -p "$finalPath/thumbs"
 
-# ffmpeg -i $filePath -vcodec libx264 -crf 21 -preset superfast -tune film -vf $crop "$finalPath/1080.mp4"
-# ffmpeg -i "$finalPath/1080.mp4" -vcodec libx264 -crf $crf -preset superfast -tune film -vf scale=1280:-1 "$finalPath/720.mp4"
-# ffmpeg -i "$finalPath/1080.mp4" -vcodec libx264 -crf (($crf-2)) -preset superfast -tune film -vf scale=854:-1 "$finalPath/480.mp4"
-# ffmpeg -i "$finalPath/1080.mp4" -vf "scale=326:-1, fps=1/10" "$finalPath/thumbs/thumb%04d.jpg"
+ffmpeg -i $filePath -vcodec libx264 -crf 21 -preset superfast -tune film -vf $crop "$finalPath/1080.mp4"
+ffmpeg -i "$finalPath/1080.mp4" -vcodec libx264 -crf $crf -preset superfast -tune film -vf scale=1280:-1 "$finalPath/720.mp4"
+ffmpeg -i "$finalPath/1080.mp4" -vcodec libx264 -crf (($crf-2)) -preset superfast -tune film -vf scale=854:-1 "$finalPath/480.mp4"
+ffmpeg -i "$finalPath/1080.mp4" -vf "scale=326:-1, fps=1/10" "$finalPath/thumbs/thumb%04d.jpg"
