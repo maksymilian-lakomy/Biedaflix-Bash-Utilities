@@ -6,8 +6,8 @@ get_duration () {
 }
 
 detect_crop () {
-    ffmpeg -ss "$2" -i "$1" -t 15 -vf "cropdetect=24:2:0" -f null - 2> "./$episode/output.txt"
-    local result=$(grep -o -m 1 "crop=.*" ./"$episode"/output.txt)
+    ffmpeg -ss "$2" -i "$1" -t 15 -vf "cropdetect=24:2:0" -f null - 2> "$3/output.txt"
+    local result=$(grep -o -m 1 "crop=.*" "$3"/output.txt)
     echo "$result"
 }
 
@@ -71,7 +71,7 @@ if [[ ! -d "$finalPath" ]]; then
     mkdir -p "$finalPath"
 fi
 
-crop=$(detect_crop "$filePath" "$durationCenter")
+crop=$(detect_crop "$filePath" "$durationCenter" "$finalPath")
 
 mkdir -p "$finalPath/thumbs"
 
