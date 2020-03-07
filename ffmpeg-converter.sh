@@ -62,7 +62,7 @@ duration=$(bc<<<"$duration / 1")
 durationCenter=$(bc<<<"$duration / 2")
 
 if [[ ! -d "$destinationPath/$series" ]]; then
-    mkdir -p "./$destinationPath/$series"
+    mkdir -p "$destinationPath/$series"
 fi
 
 finalPath="$destinationPath/$series/$episode"
