@@ -61,14 +61,18 @@ duration=$(get_duration "$filePath")
 duration=$(bc<<<"$duration / 1")
 durationCenter=$(bc<<<"$duration / 2")
 
-if [[ ! -d "./$episode" ]]; then
-    mkdir -p "./$episode"
+if [[ ! -d "$destinationPath/$series" ]]; then
+    mkdir -p "./$destinationPath/$series"
+fi
+
+finalPath="$destinationPath/$series/$episode"
+
+if [[ ! -d "$finalPath" ]]; then
+    mkdir -p "$finalPath"
 fi
 
 crop=$(detect_crop "$filePath" "$durationCenter")
 
-
-finalPath="$destinationPath/$episode"
 mkdir -p "$finalPath/thumbs"
 
 ffmpeg -i "$filePath" -vcodec libx264 -crf 21 -preset superfast -tune film -vf "$crop" "$finalPath/1080.mp4"
